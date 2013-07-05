@@ -1,0 +1,24 @@
+Default: &defaults
+  user: slushfund
+  password: slushfund
+  host: localhost
+  port: 5432
+  database: slushfund
+  poolsize: 10
+
+Development:
+  <<: *defaults
+
+Testing:
+  database: slushfund_test
+  <<: *defaults
+
+Staging:
+  database: slushfund_staging
+  poolsize: 100
+  <<: *defaults
+
+Production:
+  database: slushfund_production
+  poolsize: 100
+  <<: *defaults
