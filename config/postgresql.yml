@@ -1,7 +1,7 @@
 Default: &defaults
   user: slushfund
   password: slushfund
-  host: localhost
+  host: 192.168.1.75
   port: 5432
   database: slushfund
   poolsize: 10
