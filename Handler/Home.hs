@@ -14,7 +14,7 @@ getHomeR :: Handler Html
 getHomeR = do
     defaultLayout $ do
         aDomId <- newIdent
-        -- setTitleI MsgHomePageTitle
-        setTitle "welcome -- i18 me"
+        setTitleI MsgWelcomeHomepage
+        --setTitle "welcome -- i18 me"
         $(widgetFile "homepage")
 
