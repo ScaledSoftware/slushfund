@@ -1,7 +1,9 @@
 /static StaticR Static getStatic
 /auth   AuthR   Auth   getAuth
+/ HomeR GET 
+/blog BlogR GET POST
+/blog/#EntryId EntryR GET POST
 
 /favicon.ico FaviconR GET
 /robots.txt RobotsR GET
 
-/ HomeR GET POST

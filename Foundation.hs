@@ -19,6 +19,9 @@ import Model
 import Text.Jasmine (minifym)
 import Text.Hamlet (hamletFile)
 import System.Log.FastLogger (Logger)
+import Data.Time.Clock (getCurrentTime)
+import Data.Text
+import Yesod.Form.Nic (YesodNic) -- Allow HTML in forms
 
 -- | The site argument for your application. This can be a good place to
 -- keep settings and values requiring initialization before your application
@@ -59,6 +62,8 @@ mkYesodData "App" $(parseRoutesFile "config/routes")
 
 type Form x = Html -> MForm (HandlerT App IO) (FormResult x, Widget)
 
+instance YesodNic App
+
 -- Please see the documentation for the Yesod typeclass. There are a number
 -- of settings which can be configured by overriding methods here.
 instance Yesod App where
@@ -97,6 +102,22 @@ instance Yesod App where
     -- The page to be redirected to when authentication is required.
     authRoute _ = Just $ AuthR LoginR
 
+    isAuthorized BlogR True = do
+        mauth <- maybeAuth
+        case mauth of
+            Nothing -> return AuthenticationRequired
+            Just (Entity _ user)
+                | userIsAdmin user -> return Authorized
+                | otherwise        -> unauthorizedI MsgNotAnAdmin
+
+    isAuthorized (EntryR _) True = do
+        mauth <- maybeAuth
+        case mauth of
+            Nothing -> return AuthenticationRequired
+            Just _  -> return Authorized
+
+    isAuthorized _ _ = return Authorized
+
     -- This function creates static content files in the static folder
     -- and names them based on a hash of their content. This allows
     -- expiration dates to be set far in the future without worry of
@@ -134,17 +155,19 @@ instance YesodAuth App where
     -- Where to send a user after logout
     logoutDest _ = HomeR
 
+    -- You can add other plugins like BrowserID, email or OAuth here
+    authPlugins _ = [authBrowserId def, authGoogleEmail]
+
+    authHttpManager = httpManager
+
     getAuthId creds = runDB $ do
         x <- getBy $ UniqueUser $ credsIdent creds
         case x of
             Just (Entity uid _) -> return $ Just uid
             Nothing -> do
-                fmap Just $ insert $ User (credsIdent creds) Nothing
+                currTime <- liftIO getCurrentTime
+                fmap Just $ insert $ User (credsIdent creds) False currTime
 
-    -- You can add other plugins like BrowserID, email or OAuth here
-    authPlugins _ = [authBrowserId def, authGoogleEmail]
-
-    authHttpManager = httpManager
 
 -- This instance is required to use forms. You can modify renderMessage to
 -- achieve customized and internationalized form validation messages.

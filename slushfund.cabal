@@ -20,6 +20,9 @@ library
                      Settings.StaticFiles
                      Settings.Development
                      Handler.Home
+                     Handler.Blog
+                     Handler.Entry
+                     Handler.Auth
 
     if flag(dev) || flag(library-only)
         cpp-options:   -DDEVELOPMENT
@@ -70,6 +73,7 @@ library
                  , conduit                       >= 1.0
                  , monad-logger                  >= 0.3
                  , fast-logger                   >= 0.3
+                 , time
 
 executable         slushfund
     if flag(library-only)
