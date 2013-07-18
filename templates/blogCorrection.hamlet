@@ -1,0 +1,9 @@
+$maybe Entity _ user <- mauth
+    $if appUserIsAdmin user
+        <form method=post enctype=#{enctype}>
+            ^{entryWidget}
+            <div>
+                <input type=submit value=_{MsgNewEntry}>
+$nothing
+    <p>
+        <a href=@{AuthR LoginR}>_{MsgLoginToPost}

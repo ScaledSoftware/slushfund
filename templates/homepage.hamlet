@@ -2,3 +2,9 @@
 <p>
    <a href=@{BlogR}>_{MsgSeeArchive}
 
+<p>
+    $maybe _ <- maid 
+        <a href=@{AuthR LogoutR}>Logout
+    $nothing
+        <a href=@{AuthR LoginR}>Login
+

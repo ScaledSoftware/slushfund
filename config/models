@@ -1,24 +1,36 @@
-User
-    email Text
+
+AppUser
+    username Text
     isAdmin Bool
     created UTCTime
-    UniqueUser email
+    person PersonId Maybe
+    UniqueUser username
     deriving Typeable
+Person
+    firstName Text
+    lastName  Text
+    nickName  Text
 Email
     email Text
-    user UserId Maybe
-    verkey Text Maybe
-    UniqueEmail email
+    verKey Text
+    verifiedOn UTCTime
+    person PersonId
+    UniqueEmailPerson email person
+    UniqueEmail email 
+Phone
+    countryCode Text
+    number Text
+    person PersonId
 Entry
     title   Text
     content Html
-    owner   UserId
+    owner   AppUserId
     posted  UTCTime
     deriving
 Comment
     entry  EntryId
     posted UTCTime
-    user   UserId
+    owner  AppUserId
     name   Text
     text   Textarea
 

@@ -1,0 +1,24 @@
+<p>
+   <h1> #{entryTitle entry}
+<p>
+   #{entryContent entry}
+   <br> Posted at #{show $ entryPosted entry}
+<p>
+<h2>_{MsgAddCommentHeading}
+    $maybe _ <- muser
+       <form method=post enctype=#{enctype}>
+           ^{commentWidget}
+           <div>
+               <input type=submit value=_{MsgAddCommentButton}> 
+    $nothing
+       <p>
+           <a href=@{AuthR LoginR}>_{MsgLoginToComment}
+<hr>
+$if null comments
+    <p>_{MsgNoComments}
+$else
+    $forall (Entity _ (Comment _ posted _ title body)) <- comments
+       <h3> #{title}
+       <br> #{body}
+       <br> #{show posted}
+       <hr>

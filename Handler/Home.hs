@@ -2,6 +2,7 @@
 module Handler.Home where
 
 import Import
+import Yesod.Auth
 
 -- This is a handler function for the GET request method on the HomeR
 -- resource pattern. All of your resource patterns are defined in
@@ -12,9 +13,9 @@ import Import
 -- inclined, or create a single monolithic file.
 getHomeR :: Handler Html
 getHomeR = do
+    maid <- maybeAuthId
     defaultLayout $ do
         aDomId <- newIdent
         setTitleI MsgWelcomeHomepage
-        --setTitle "welcome -- i18 me"
         $(widgetFile "homepage")
 

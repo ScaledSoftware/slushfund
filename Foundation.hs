@@ -107,8 +107,8 @@ instance Yesod App where
         case mauth of
             Nothing -> return AuthenticationRequired
             Just (Entity _ user)
-                | userIsAdmin user -> return Authorized
-                | otherwise        -> unauthorizedI MsgNotAnAdmin
+                | appUserIsAdmin user -> return Authorized
+                | otherwise           -> unauthorizedI MsgNotAnAdmin
 
     isAuthorized (EntryR _) True = do
         mauth <- maybeAuth
@@ -148,7 +148,7 @@ instance YesodPersistRunner App where
     getDBRunner = defaultGetDBRunner connPool
 
 instance YesodAuth App where
-    type AuthId App = UserId
+    type AuthId App = AppUserId
 
     -- Where to send a user after successful login
     loginDest _ = HomeR
@@ -166,7 +166,7 @@ instance YesodAuth App where
             Just (Entity uid _) -> return $ Just uid
             Nothing -> do
                 currTime <- liftIO getCurrentTime
-                fmap Just $ insert $ User (credsIdent creds) False currTime
+                fmap Just $ insert $ AppUser (credsIdent creds) False currTime Nothing
 
 
 -- This instance is required to use forms. You can modify renderMessage to
