@@ -1,37 +1,44 @@
 module Handler.Blog where
 
 import Import
-import Data.Time (UTCTime)
 import Yesod.Auth
 
-entryForm :: AppUserId -> UTCTime -> Form Entry
-entryForm uid t = do 
+entryForm :: Form Entry
+entryForm = do 
    renderDivs $ Entry
        <$> areq textField (fieldSettingsLabel MsgNewEntryTitle) Nothing
        <*> areq nicHtmlField (fieldSettingsLabel MsgNewEntryContent) Nothing
-       <*> pure uid
-       <*> pure t
+       <*> lift requireAuthId
+       <*> lift (liftIO getCurrentTime)
 
 getBlogR :: Handler Html
 getBlogR = do
     t <- liftIO getCurrentTime
     mauth <- maybeAuth
-    userId <- requireAuthId
     entries <- runDB $ selectList [] [Desc EntryPosted]
-    (entryWidget, enctype) <- generateFormPost $ entryForm userId t
-    defaultLayout $ do
-        setTitleI MsgBlogArchiveTitle
-        $(widgetFile "blog")
+
+    if isJust mauth
+        then do
+             (entryWidget, enctype) <- generateFormPost $ entryForm
+             setMessage "you are logged in"
+             defaultLayout $ do
+                 setTitleI MsgBlogArchiveTitle
+                 $(widgetFile "blog")
+                 $(widgetFile "blogEntry")
+        else defaultLayout $ do
+                 setMessage "you are NOT logged in"
+                 setTitleI MsgBlogArchiveTitle
+                 $(widgetFile "blog")
+
 
 
 postBlogR :: Handler Html
 postBlogR = do
     mauth <- maybeAuth
-    userId <- requireAuthId
 
     t <- liftIO getCurrentTime
 
-    ((res, entryWidget), enctype) <- runFormPost $ entryForm userId t 
+    ((res, entryWidget), enctype) <- runFormPost $ entryForm
     case res of
         FormSuccess newEntry -> do
             entryId <- runDB $ insert $ newEntry {entryPosted = t}
@@ -39,4 +46,5 @@ postBlogR = do
             redirect $ EntryR entryId
         _ -> defaultLayout $ do
             setTitleI MsgPleaseCorrectEntry
+            setMessageI MsgPleaseCorrectEntry
             $(widgetFile "blogCorrection")

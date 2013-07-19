@@ -1,39 +1,39 @@
 module Handler.Entry where
 
 import Import
-import Data.Time
 import Yesod.Auth
 
-commentForm :: AppUserId -> UTCTime -> EntryId -> Form Comment
-commentForm uid t entryId = renderDivs $ Comment
+commentForm :: EntryId -> Form Comment
+commentForm entryId = renderDivs $ Comment
     <$> pure entryId
-    <*> pure t
-    <*> pure uid
+    <*> lift (liftIO getCurrentTime)
+    <*> lift requireAuthId
     <*> areq textField (fieldSettingsLabel MsgCommentName) Nothing
     <*> areq textareaField (fieldSettingsLabel MsgCommentText) Nothing
 
 getEntryR :: EntryId -> Handler Html
 getEntryR entryId = do
-    uid <- requireAuthId
-    t <- liftIO getCurrentTime
-    (commentWidget, enctype) <- generateFormPost (commentForm uid t entryId)
 
     muser <- maybeAuth
-
-    entries <- runDB $ selectList [] [Desc EntryPosted]
     entry <- runDB $ get404 entryId
-
     comments <- runDB $ selectList [CommentEntry ==. entryId] [Asc CommentPosted]
 
-    defaultLayout $ do
-       setTitleI $ MsgEntryTitle $ entryTitle entry
-       $(widgetFile "entry")
+    if isJust muser
+        then do
+            -- user is logged in.
+            (commentWidget, enctype) <- generateFormPost (commentForm entryId)
+            defaultLayout $ do
+                setTitleI $ MsgEntryTitle $ entryTitle entry
+                $(widgetFile "entry")
+                $(widgetFile "entryComment")
+        else defaultLayout $ do
+                setTitleI $ MsgEntryTitle $ entryTitle entry
+                $(widgetFile "entry")
 
 postEntryR :: EntryId -> Handler Html
 postEntryR entryId = do
-    uid <- requireAuthId
     t <- liftIO getCurrentTime
-    ((res, commentWidget), enctype) <- runFormPost (commentForm uid t entryId)
+    ((res, commentWidget), enctype) <- runFormPost (commentForm entryId)
 
 
     entry <- runDB $ get404 entryId
@@ -49,4 +49,4 @@ postEntryR entryId = do
 
         _ -> defaultLayout $ do
             setTitleI MsgPleaseCorrectComment
-            $(widgetFile "entry")
+            $(widgetFile "entryComment")

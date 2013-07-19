@@ -1,18 +1,8 @@
 <p>
-   <h1> #{entryTitle entry}
+   <h1 #body> #{entryTitle entry}
 <p>
-   #{entryContent entry}
-   <br> Posted at #{show $ entryPosted entry}
-<p>
-<h2>_{MsgAddCommentHeading}
-    $maybe _ <- muser
-       <form method=post enctype=#{enctype}>
-           ^{commentWidget}
-           <div>
-               <input type=submit value=_{MsgAddCommentButton}> 
-    $nothing
-       <p>
-           <a href=@{AuthR LoginR}>_{MsgLoginToComment}
+   <div #blogPost> #{entryContent entry}
+   <div #timeStamp> Posted at #{show $ entryPosted entry}
 <hr>
 $if null comments
     <p>_{MsgNoComments}
