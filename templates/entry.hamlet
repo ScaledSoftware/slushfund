@@ -7,8 +7,7 @@
 $if null comments
     <p>_{MsgNoComments}
 $else
-    $forall (Entity _ (Comment _ posted _ title body)) <- comments
-       <h3> #{title}
-       <br> #{body}
-       <br> #{show posted}
+    $forall (Entity _ (Comment _ posted _ name body)) <- comments
+       <div #commentBody> #{body}
+       <div #timeStamp> #{name} &#8212; #{show posted}
        <hr>
