@@ -1,3 +1,14 @@
-$maybe msg <- mmsg
-    <div #message>#{msg}
-^{widget}
+<div>
+  <div>
+    <ul #topnavUL>
+      <li #topnavLI>
+        <a #topnavA href=@{BlogR}>Slush Fund Blog
+      <li #topnavLI>
+        $maybe _ <- mauth
+            <a #topnavA href=@{AuthR LogoutR}>Logout
+        $nothing
+            <a #topnavA href=@{AuthR LoginR}>Login
+  <div>
+    $maybe msg <- mmsg
+        <p #message>#{msg}
+  ^{widget}
