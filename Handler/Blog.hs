@@ -15,18 +15,16 @@ getBlogR :: Handler Html
 getBlogR = do
     t <- liftIO getCurrentTime
     mauth <- maybeAuth
-    entries <- runDB $ selectList [] [Desc EntryPosted]
+    entries <- runDB $ selectList [] [Asc EntryPosted]
 
     if isJust mauth
         then do
              (entryWidget, enctype) <- generateFormPost $ entryForm
-             setMessage "you are logged in"
              defaultLayout $ do
                  setTitleI MsgBlogArchiveTitle
                  $(widgetFile "blog")
                  $(widgetFile "blogEntry")
         else defaultLayout $ do
-                 setMessage "you are NOT logged in"
                  setTitleI MsgBlogArchiveTitle
                  $(widgetFile "blog")
 

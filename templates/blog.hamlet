@@ -4,5 +4,15 @@ $if null entries
 $else
     <ul>
         $forall Entity entryId entry <- entries
-            <li>
-                <a href=@{EntryR entryId}>#{entryTitle entry}
+                <br>
+                <br>
+                <div #blogTitleList> 
+                    <a #blogTitleLink href=@{EntryR entryId}>#{entryTitle entry}
+                    <br>
+                <div #blogPost> 
+                    #{entryContent entry}
+                <div #timeStamp> 
+                    #{show $ entryPosted entry}
+                    <br>
+                    <br>
+
