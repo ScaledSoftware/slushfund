@@ -1,0 +1,11 @@
+<div #indent100px>
+    <p> _{MsgNewUserSearchExplanation}
+    <form method=post enctype=#{enctype}>
+        ^{searchwidget}
+        <div>
+            <input type=submit value=_{MsgSearchButtonTitle}>
+<div #indent100px>
+    <p #message> #{show mNewUser}
+    $maybe Entity _ email <- mEmail
+        <p #message> #{show $ emailEmail email}
+

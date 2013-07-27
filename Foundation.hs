@@ -4,7 +4,6 @@ import Prelude
 import Yesod
 import Yesod.Static
 import Yesod.Auth
-import Yesod.Auth.BrowserId
 import Yesod.Auth.GoogleEmail
 import Yesod.Default.Config
 import Yesod.Default.Util (addStaticContentExternal)
@@ -103,6 +102,18 @@ instance Yesod App where
     -- The page to be redirected to when authentication is required.
     authRoute _ = Just $ AuthR LoginR
 
+    isAuthorized (FundR _) _ = do
+        mauth <- maybeAuth
+        case mauth of
+            Nothing -> return AuthenticationRequired
+            Just (Entity _ _) -> return Authorized
+
+    isAuthorized FundsR _ = do
+        mauth <- maybeAuth
+        case mauth of
+            Nothing -> return AuthenticationRequired
+            Just (Entity _ _) -> return Authorized
+
     isAuthorized BlogR True = do
         mauth <- maybeAuth
         case mauth of
@@ -157,7 +168,7 @@ instance YesodAuth App where
     logoutDest _ = HomeR
 
     -- You can add other plugins like BrowserID, email or OAuth here
-    authPlugins _ = [authBrowserId def, authGoogleEmail]
+    authPlugins _ = [authGoogleEmail]
 
     authHttpManager = httpManager
 
@@ -167,8 +178,12 @@ instance YesodAuth App where
             Just (Entity uid _) -> return $ Just uid
             Nothing -> do
                 currTime <- liftIO getCurrentTime
-                fmap Just $ insert $ AppUser (credsIdent creds) False currTime Nothing
-
+                -- TODO: See if person already exists and use that entity.
+                pId <- insert $ Person cred cred cred currTime Nothing
+                setSession "newuser" cred
+                fmap Just $ insert $ AppUser cred False currTime pId
+                where
+                    cred = credsIdent creds
 
 -- This instance is required to use forms. You can modify renderMessage to
 -- achieve customized and internationalized form validation messages.

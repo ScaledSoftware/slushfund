@@ -15,7 +15,7 @@ getBlogR :: Handler Html
 getBlogR = do
     t <- liftIO getCurrentTime
     mauth <- maybeAuth
-    entries <- runDB $ selectList [] [Asc EntryPosted]
+    entries <- runDB $ selectList [] [Asc EntryCreated]
 
     if isJust mauth
         then do
@@ -39,7 +39,7 @@ postBlogR = do
     ((res, entryWidget), enctype) <- runFormPost $ entryForm
     case res of
         FormSuccess newEntry -> do
-            entryId <- runDB $ insert $ newEntry {entryPosted = t}
+            entryId <- runDB $ insert $ newEntry {entryCreated = t}
             setMessageI $ MsgEntryCreated $ entryTitle newEntry
             redirect $ EntryR entryId
         _ -> defaultLayout $ do

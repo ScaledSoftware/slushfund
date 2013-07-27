@@ -16,7 +16,7 @@ getEntryR entryId = do
 
     muser <- maybeAuth
     entry <- runDB $ get404 entryId
-    comments <- runDB $ selectList [CommentEntry ==. entryId] [Asc CommentPosted]
+    comments <- runDB $ selectList [CommentEntry ==. entryId] [Asc CommentCreated]
 
     if isJust muser
         then do
@@ -37,7 +37,7 @@ postEntryR entryId = do
 
 
     entry <- runDB $ get404 entryId
-    comments <- runDB $ selectList [CommentEntry ==. entryId] [Asc CommentPosted]
+    comments <- runDB $ selectList [CommentEntry ==. entryId] [Asc CommentCreated]
 
     muser <- maybeAuth
 

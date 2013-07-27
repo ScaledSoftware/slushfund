@@ -1,18 +1,18 @@
-
-$if null entries
-    <p>_{MsgNoEntries} 
-$else
-    <ul>
-        $forall Entity entryId entry <- entries
-                <br>
-                <br>
-                <div #blogTitleList> 
-                    <a #blogTitleLink href=@{EntryR entryId}>#{entryTitle entry}
-                    <br>
-                <div #blogPost> 
-                    #{entryContent entry}
-                <div #timeStamp> 
-                    #{show $ entryPosted entry}
-                    <br>
-                    <br>
-
+<div>
+  $if null entries
+      <p>_{MsgNoEntries} 
+  $else
+     <div #indent100px>
+          $forall Entity entryId entry <- entries
+              <br>
+              <br>
+              <div #blogTitleList> 
+                  <a #blogTitleLink href=@{EntryR entryId}>#{entryTitle entry}
+                  <br>
+              <div #blogPost> 
+                  #{entryContent entry}
+              <div #timeStamp> 
+                  #{show $ entryCreated entry}
+                  <br>
+                  <br>
+  

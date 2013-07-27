@@ -1,0 +1,8 @@
+<p>
+  $if null person2fid
+    <p> _{MsgNoFunds}
+  $else
+    $forall (nickname, fundId) <- person2fid
+      <div>
+        <a href=@{FundR fundId}>#{nickname} fund
+        not in the link but in the same paragraph

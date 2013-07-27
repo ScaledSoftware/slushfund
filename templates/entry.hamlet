@@ -1,13 +1,16 @@
-<p>
-   <h1 #body> #{entryTitle entry}
-<p>
-   <div #blogPost> #{entryContent entry}
-   <div #timeStamp> Posted at #{show $ entryPosted entry}
-<hr>
-$if null comments
-    <p>_{MsgNoComments}
-$else
-    $forall (Entity _ (Comment _ posted _ name body)) <- comments
-       <div #commentBody> #{body}
-       <div #timeStamp> #{name} &#8212; #{show posted}
-       <hr>
+<div #indent100px>
+    <p>
+      <div #blogTitleList> 
+        <span #blogTitleLink>
+          #{entryTitle entry}
+    <p>
+       <div #blogPost> #{entryContent entry}
+       <div #timeStamp> Posted at #{show $ entryCreated entry}
+    <hr>
+    $if null comments
+        <p>_{MsgNoComments}
+    $else
+        $forall (Entity _ (Comment _ posted _ name body)) <- comments
+           <div #commentBody> #{body}
+           <div #timeStamp> #{name} &#8212; #{show posted}
+           <hr>

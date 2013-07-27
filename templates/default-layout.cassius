@@ -14,18 +14,21 @@
 @textwidth: 600px
 
 html
+    background-color: #{gunmetal}
+    overflow-y: scroll
+
+body, html
+    min-height: 100%
     color: #{textcolor}
-    background-color: #{charcoal}
 
 body
-    color: #{textcolor}
     background-color: #{midnight}
     font-size: 100%
     align: center
     margin-left: auto
     margin-right: auto
     width: #{dispwidth}
-    height: 100%
+    padding: 0
 
 h1, h2, h3, h4, h5, h6
     font-family: Georgia, serif
@@ -76,36 +79,35 @@ hr
     background-color: #{brightgold}
     width: #{textwidth}
     align: center
-    margin-left: 100px
-    width: #{textwidth}
+    margin-left: auto
+    margin-right: auto
 
 #topnavUL
     list-style-type: none
-    margin: 60px 0px 5px 0px /* bottom margin 5px */
+    margin: 10px 0px 10px 0px /* top and bottom margins 10px */
     padding: 0px
     overflow: hidden
-
 
 #topnavLI
     float: left
 
-#topnavA
+#topnavA, #topnavANarrow
     margin: 0px
     border: 1.5px solid #{brightgold}
-    padding: 10px
+    padding: 8px
     display: block
-    width: 377px
+    width: 243.666667px
     background-color: #{linkorange}
     color: #{textcolor}
-    font-family: cursive, serif
+    font-family: Georgia, serif
     font-size: 150%
     text-align: center
 
-#topnavAright
-    position: fixed
-    top: 10px
-    right: 50px
+#topnavA
+    width: 243.666667px
 
+#topnavANarrow
+    width: 117.833333px
 
 textarea 
     width: 600px
@@ -116,31 +118,26 @@ textarea
     min-width: 600px
     color: #{textcolor}
     background-color: #{gunmetal}
-    font-size: 20px
-    height: 30px
+    font-size: 1.25em
+    height: 2em
 
 #blogTitleLink
-    width: 600px
-    min-width: 600px
     color: #{textcolor}
     background-color: #{gunmetal}
-    font-size: 20px
+    font-size: 1.25em
     position: relative
-    top: 5px
-    left: 20px
-
-#blogTitle
-    width: 600px
-    min-width: 600px
-    color: #{textcolor}
-    background-color: #{gunmetal}
-    font-size: 20px
-    height: 20px
+    top: 0.375em
+    left: 1em
 
 #blogPost 
-    width: 600px
+    width: #{textwidth}
+    margin: 0.25em
     color: #{textcolor}
     background-color: #{midnight}
+
+#indent100px /* or 6.25 em */
+    position: relative
+    left: 6.25em
 
 #timeStamp
     color: #{red}

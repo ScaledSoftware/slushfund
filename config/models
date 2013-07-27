@@ -1,37 +1,57 @@
-
 AppUser
     username Text
     isAdmin Bool
     created UTCTime
-    person PersonId Maybe
+    person PersonId
     UniqueUser username
     deriving Typeable
 Person
     firstName Text
     lastName  Text
-    nickName  Text
+    nickName  Text 
+    created UTCTime
+    picture Text Maybe 
 Email
     email Text
     verKey Text
-    verifiedOn UTCTime
+    verifiedOn UTCTime Maybe 
     person PersonId
+    created UTCTime
     UniqueEmailPerson email person
     UniqueEmail email 
 Phone
     countryCode Text
     number Text
     person PersonId
+    created UTCTime
 Entry
     title   Text
     content Html
     owner   AppUserId
-    posted  UTCTime
+    created UTCTime
     deriving
 Comment
     entry  EntryId
-    posted UTCTime
+    created UTCTime
     owner  AppUserId
     name   Text
     text   Textarea
+Fund
+    p1 PersonId
+    p2 PersonId
+    nickname Text
+    created UTCTime
+    UniqueFund p1 p2
+FundEntry
+    fund FundId
+    payer PersonId
+    paidFor PersonId
+    amount Double
+    isSplit Bool
+    notes Text
+    transDate UTCTime
+    created UTCTime
+
+
 
  -- By default this file is used in Model.hs (which is imported by Foundation.hs)

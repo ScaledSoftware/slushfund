@@ -25,8 +25,8 @@ $newline never
     <body>
         <div class="container">
             <header>
-            <div id="main" role="main">
-              ^{pageBody pc}
+            <div id="main" role="main"> 
+                ^{pageBody pc}
             <footer>
                 #{extraCopyright $ appExtra $ settings master}
 

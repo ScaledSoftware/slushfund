@@ -23,6 +23,10 @@ library
                      Handler.Blog
                      Handler.Entry
                      Handler.Auth
+                     Handler.Fund
+                     Handler.Funds
+                     Handler.Person
+                     Handler.NewUserSearch
 
     if flag(dev) || flag(library-only)
         cpp-options:   -DDEVELOPMENT

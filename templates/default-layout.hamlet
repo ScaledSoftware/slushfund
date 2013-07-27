@@ -1,14 +1,18 @@
-<div>
+<div style="width=800px;max-width:800px;">
   <div>
     <ul #topnavUL>
       <li #topnavLI>
-        <a #topnavA href=@{BlogR}>Slush Fund Blog
+        <a #topnavA href=@{FundsR}>Funds
       <li #topnavLI>
-        $maybe _ <- mauth
+        <a #topnavA href=@{BlogR}>Slush Fund Blog
+      $maybe _ <- mauth
+        <li #topnavLI>
             <a #topnavA href=@{AuthR LogoutR}>Logout
-        $nothing
+      $nothing
+        <li #topnavLI>
             <a #topnavA href=@{AuthR LoginR}>Login
-  <div>
-    $maybe msg <- mmsg
-        <p #message>#{msg}
+  $maybe msg <- mmsg
+    <div #message>
+      <p>#{msg}
+  
   ^{widget}
