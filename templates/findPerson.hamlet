@@ -1,0 +1,18 @@
+<p>
+  <h2>_{MsgFindPerson}
+    <form method=post enctype=#{enctype}>
+        ^{findWidget}
+        <div>
+            <input type=submit value=_{MsgFindButtonTitle}> 
+$if (not $ null displayPeopleRecs)
+  <H2>_{MsgCreateFundWithHeader}
+  <p> _{MsgCreateFundWithMsg}
+  $forall (pid, person, mEmail, mPhone) <- displayPeopleRecs
+    <p>
+        <a href=@{CreateFundR pid}>#{personNickName person} 
+           $maybe email <- mEmail
+              #{emailEmail email}
+           $maybe phone <- mPhone
+              #{phoneNumber phone}
+
+
