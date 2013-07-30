@@ -1,3 +1,5 @@
+ -- By default this file is used in Model.hs (which is imported by Foundation.hs)
+
 AppUser
     username Text
     isAdmin Bool
@@ -20,7 +22,6 @@ Email
     UniqueEmailPerson email person
     UniqueEmail email 
 Phone
-    countryCode Text
     number Text
     person PersonId
     created UTCTime
@@ -54,4 +55,3 @@ FundEntry
 
 
 
- -- By default this file is used in Model.hs (which is imported by Foundation.hs)
