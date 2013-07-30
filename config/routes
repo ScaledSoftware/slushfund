@@ -11,3 +11,5 @@
 /funds FundsR GET
 /person/#PersonId PersonR GET POST
 /newusersearch NewUserSearchR GET POST
+/findperson FindPersonR GET POST
+/createfund/#PersonId CreateFundR POST
