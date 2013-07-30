@@ -29,7 +29,6 @@ getNewUserSearchR = do
                    let oopsPersonId = appUserPerson appUser
 
                    -- alter the AppUser to point to the original Person
-                   
                    runDB $ do
                        update appUserId [AppUserPerson =. (emailPerson email)]
                        delete oopsPersonId
