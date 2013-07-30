@@ -21,6 +21,9 @@ body, html
     min-height: 100%
     color: #{textcolor}
 
+label
+    color: #{textcolor}
+
 body
     background-color: #{midnight}
     font-size: 100%
