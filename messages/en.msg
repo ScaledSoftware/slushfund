@@ -41,6 +41,12 @@ SearchButtonTitle: Search
 FirstName: First Name
 LastName: Last Name
 NickName: Nickname
+FindPerson: Find a person to start a fund with
+FindButtonTitle: Find
+CreateFundWithHeader: Create New Fund
+CreateFundWithMsg: Select a user below to create a SlushFund with. If the person you are looking for does not appear to be a current user, use the form at the bottom to create fund. Please e-mail that person and tell them they can log in and use the joint SlushFund by logging in with the e-mail you specify.
+FundWithPersonButtonTitle personName@Text: Fund with #{personName}
+CannotCreateFundWSelf: You shouldn't be able to create a fund linking to yourself. Please report bug with steps to reproduct it to scaledsoftware /at/ google /dot/ com
 
 UpdateButtonTitle: Update
 PersonInfo personName@Text: Update Information for Person: #{personName}
