@@ -17,7 +17,7 @@ type CountryCode = Int
 share [mkPersist sqlOnlySettings, mkMigrate "migrateAll"]
     $(persistFileWith lowerCaseSettings "config/models")
 
-otherPerson :: PersonId -> Fund -> PersonId
-otherPerson pId fund = if fundP1 fund == pId
+fundOtherPerson :: PersonId -> Fund -> PersonId
+fundOtherPerson pId fund = if fundP1 fund == pId
                        then fundP2 fund
                        else fundP1 fund

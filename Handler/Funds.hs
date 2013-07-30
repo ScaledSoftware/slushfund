@@ -21,8 +21,8 @@ getFundsR = do
             
             -- we just want the funds, we don't care about the FundIds.
             let funds = map (\(Entity fundId f) -> (fundId, f)) entityFunds
-            let fundPersonIds = map (otherPerson personId . snd) funds
-            let pid2fid = map (\f -> (otherPerson personId (snd f), fst f)) funds 
+            let fundPersonIds = map (fundOtherPerson personId . snd) funds
+            let pid2fid = map (\f -> (fundOtherPerson personId (snd f), fst f)) funds 
         
             entityPersons <- runDB $ selectList [PersonId <-. fundPersonIds]
                                                 [Asc PersonNickName]
