@@ -9,10 +9,18 @@ $if (not $ null displayPeopleRecs)
   <p> _{MsgCreateFundWithMsg}
   $forall (pid, person, mEmail, mPhone) <- displayPeopleRecs
     <p>
-        <a href=@{CreateFundR pid}>#{personNickName person} 
-           $maybe email <- mEmail
-              #{emailEmail email}
-           $maybe phone <- mPhone
-              #{phoneNumber phone}
+      <form method="post" action="@{CreateFundR pid}">
+        <table>
+          <tr>
+            <td>
+              #{personNickName person} _{MsgAKA} #{personFirstName person} #{personLastName person}
+              $maybe email <- mEmail
+                <br>
+                #{emailEmail email}
+              $maybe phone <- mPhone
+                <br>
+                #{phoneNumber phone}
+            <td>
+              <input type="submit" value="Create Fund">
 
 

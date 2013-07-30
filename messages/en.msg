@@ -42,6 +42,7 @@ FirstName: First Name
 LastName: Last Name
 NickName: Nickname
 FindPerson: Find a person to start a fund with
+FindPersonLink: Find a person to start a fund with
 FindButtonTitle: Find
 CreateFundWithHeader: Create New Fund
 CreateFundWithMsg: Select a user below to create a SlushFund with. If the person you are looking for does not appear to be a current user, use the form at the bottom to create fund. Please e-mail that person and tell them they can log in and use the joint SlushFund by logging in with the e-mail you specify.
@@ -52,3 +53,4 @@ UpdateButtonTitle: Update
 PersonInfo personName@Text: Update Information for Person: #{personName}
 PersonUpdated personName@Text: Information for #{personName} was udpated.
 PleaseCorrectPersonEntry: The entered information could not be processed. Please correct it and resubmit.
+AKA: also known as
