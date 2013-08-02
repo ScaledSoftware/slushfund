@@ -2,11 +2,14 @@ module Handler.NewUserSearch where
 
 import Import
 
-searchForm :: Form (Maybe Text, Maybe Text)
+data UserInfoData = UserInfoData { email :: Maybe Text
+                                 , phone :: Maybe Text}
+
+searchForm :: Form UserInfoData
 searchForm = do
-   renderDivs $ (,)
-      <$> aopt textField (fieldSettingsLabel MsgPhoneNumTitle) Nothing
-      <*> aopt textField (fieldSettingsLabel MsgEmailAddressTitle) Nothing
+   renderDivs $ UserInfoData
+      <$> aopt textField (fieldSettingsLabel MsgEmailAddressTitle) Nothing
+      <*> aopt textField (fieldSettingsLabel MsgPhoneNumTitle) Nothing
 
 getNewUserSearchR :: Handler Html
 getNewUserSearchR = do
