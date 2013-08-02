@@ -11,3 +11,4 @@ cabal-dev/
 static/.DS_Store
 static/css/.DS_Store
 static/img/.DS_Store
+static/combined/
