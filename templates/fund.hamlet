@@ -1,2 +1,17 @@
-<p>
-   write me please!!!!!!!
+<h2> _{MsgFundHeaderTitle} #{fundNick}
+<div>
+  <table>
+    <tr>
+      <th> Who Paid
+      <th> Amount
+      <th> Was Split?
+      <th> Where
+      <th> Notes
+    $forall (fundEntryId, fundEntry, person) <- decoratedFundEntries
+      <tr>
+        <td> #{personNickName person}
+        <td> #{fundEntryAmount fundEntry}
+        <td> #{fundEntryWasSplit fundEntry}
+        <td> #{fundEntryWhere fundEntry}
+        <td> #{fundEntryNotes fundEntry}
+   

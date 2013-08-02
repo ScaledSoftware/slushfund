@@ -40,7 +40,7 @@ Comment
 Fund
     p1 PersonId
     p2 PersonId
-    nickname Text
+    nickName Text
     created UTCTime
     UniqueFund p1 p2
 FundEntry
@@ -48,7 +48,8 @@ FundEntry
     payer PersonId
     paidFor PersonId
     amount Double
-    isSplit Bool
+    wasSplit Bool
+    where Text
     notes Text
     transDate UTCTime
     created UTCTime

@@ -29,6 +29,7 @@ HomepageTitle: Yesod Blog Demo
 BlogArchiveTitle: Blog Archive
 
 FundTitle personName@Text: Slush Fund with #{personName}
+FundHeaderTitle: Slush Fund with 
 AllFundsTitle: List of all Slush Funds
 NoFunds: You don't have any funds. Please use the form below to create one or more.
 
