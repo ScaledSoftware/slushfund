@@ -52,6 +52,6 @@ CannotCreateFundWSelf: You shouldn't be able to create a fund linking to yoursel
 
 UpdateButtonTitle: Update
 PersonInfo personName@Text: Update Information for Person: #{personName}
-PersonUpdated personName@Text: Information for #{personName} was udpated.
+PersonUpdated personName@Text: Information for #{personName} was updated.
 PleaseCorrectPersonEntry: The entered information could not be processed. Please correct it and resubmit.
 AKA: also known as
