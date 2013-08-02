@@ -25,6 +25,7 @@ getFindPersonR = do
         setTitleI MsgFindPerson
         $(widgetFile "findPerson")
 
+
 postFindPersonR :: Handler Html
 postFindPersonR = do
     Entity appUserId appUser <- requireAuth
