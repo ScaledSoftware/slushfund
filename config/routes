@@ -13,3 +13,5 @@
 /newusersearch NewUserSearchR GET POST
 /findperson FindPersonR GET POST
 /createfund/#PersonId CreateFundR POST
+/addfundentry/#FundId AddFundEntryR POST
+/deletefundentry/#FundEntryId DeleteFundEntryR POST

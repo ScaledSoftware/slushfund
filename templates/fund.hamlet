@@ -1,5 +1,16 @@
-<h2> _{MsgFundHeaderTitle} #{fundNick}
-<div>
+<div #indent100px>
+  <h2> _{MsgFundHeaderTitle} #{fundNick}
+  <br>
+  <h4>
+      $if evenSteven
+          The two of your are essentially even. 
+      $elseif iOwe
+          <h4> I need to buy the next round, I owe #{personNickName them} $#{myDebt}
+      $else
+          <h4> #{personNickName them} should buy soon, they owe $#{theirDebt}
+  <br>
+  <br>
+<div #indent100px>
   <table>
     <tr>
       <th> Who Paid
@@ -7,11 +18,18 @@
       <th> Was Split?
       <th> Where
       <th> Notes
+      <th> 
     $forall (fundEntryId, fundEntry, person) <- decoratedFundEntries
       <tr>
         <td> #{personNickName person}
-        <td> #{fundEntryAmount fundEntry}
-        <td> #{fundEntryWasSplit fundEntry}
+        <td align="right"> #{fundEntryAmount fundEntry}
+        <td align="center"> #{fundEntryWasSplit fundEntry}
         <td> #{fundEntryWhere fundEntry}
         <td> #{fundEntryNotes fundEntry}
+        <td>
+          <form method="post" action="@{DeleteFundEntryR fundEntryId}">
+            <input type="submit" value="Delete Entry">
+             
    
+<br>
+<br>

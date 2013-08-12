@@ -1,0 +1,5 @@
+<div #indent100px>
+    <form method=post enctype=#{enctype} action="@{AddFundEntryR fundId}">
+        ^{fundEntryWidget}
+        <div>
+            <input type=submit value=_{MsgSubmitFundEntry}>

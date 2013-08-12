@@ -46,12 +46,12 @@ Fund
 FundEntry
     fund FundId
     payer PersonId
-    paidFor PersonId
     amount Double
     wasSplit Bool
     where Text
     notes Text
-    transDate UTCTime
+    transDay Day
+    transTime TimeOfDay
     created UTCTime
 
 

@@ -19,7 +19,7 @@ import           Model                as Import
 import           Settings             as Import
 import           Settings.Development as Import
 import           Settings.StaticFiles as Import
-import           Data.Time            as Import (getCurrentTime)
+import           Data.Time            as Import (getCurrentTime, Day, TimeOfDay)
 import           Data.Maybe           as Import
 
 #if __GLASGOW_HASKELL__ >= 704

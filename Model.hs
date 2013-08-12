@@ -21,3 +21,14 @@ fundOtherPerson :: PersonId -> Fund -> PersonId
 fundOtherPerson pId fund = if fundP1 fund == pId
                        then fundP2 fund
                        else fundP1 fund
+
+myDebtFromFundEntry :: PersonId -> FundEntry -> Double
+myDebtFromFundEntry myPId fundEntry =
+    if myPId == fundEntryPayer fundEntry
+      then -1.0 * fairShare
+      else fairShare
+  where
+    fairShare = if fundEntryWasSplit fundEntry 
+                  then 0.5 * fundEntryAmount fundEntry
+                  else fundEntryAmount fundEntry
+

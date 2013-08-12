@@ -29,6 +29,8 @@ library
                      Handler.NewUserSearch
                      Handler.FindPerson
                      Handler.CreateFund
+                     Handler.AddFundEntry
+                     Handler.DeleteFundEntry
 
     if flag(dev) || flag(library-only)
         cpp-options:   -DDEVELOPMENT
