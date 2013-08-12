@@ -180,7 +180,7 @@ instance YesodAuth App where
                 currTime <- liftIO getCurrentTime
                 -- TODO: See if person already exists and use that entity.
                 pId <- insert $ Person cred cred cred currTime Nothing
-                insert $ Email cred "" Nothing pId currTime
+                _ <- insert $ Email cred "" Nothing pId currTime
                 setSession "newuser" cred
                 fmap Just $ insert $ AppUser cred False currTime pId
                 where
