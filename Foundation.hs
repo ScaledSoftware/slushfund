@@ -4,7 +4,7 @@ import Prelude
 import Yesod
 import Yesod.Static
 import Yesod.Auth
-import Yesod.Auth.GoogleEmail
+import Yesod.Auth.OpenId
 import Yesod.Default.Config
 import Yesod.Default.Util (addStaticContentExternal)
 import Network.HTTP.Conduit (Manager)
@@ -168,7 +168,7 @@ instance YesodAuth App where
     logoutDest _ = HomeR
 
     -- You can add other plugins like BrowserID, email or OAuth here
-    authPlugins _ = [authGoogleEmail]
+    authPlugins _ = [authOpenId OPLocal []]
 
     authHttpManager = httpManager
 
@@ -188,9 +188,7 @@ instance YesodAuth App where
 
     loginHandler = lift $ defaultLayout $ do
           [whamlet|\
-<div style="width:800px;margin=0; auto" >
-  <p align=center>
-    ^{login}
+<div style="width:800px;margin=0 auto" > ^{login}
 |]
 
 login :: Widget

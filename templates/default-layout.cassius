@@ -12,6 +12,7 @@
 @navorange: #D77D00
 @dispwidth: 800px
 @textwidth: 600px
+@loginboxwidth: 400px
 
 html
     background-color: #{gunmetal}
@@ -40,6 +41,16 @@ body
     right: 2em
     top: 0.5em
     bottom: 3em
+
+#loginbox
+    background-color: white
+    align: center
+    margin-top: 6.25em
+    margin-bottom: auto
+    margin-left: auto
+    margin-right: auto
+    height: 100%
+    max-width: #{loginboxwidth}
 
 footer
     align: center
