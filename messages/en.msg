@@ -5,6 +5,7 @@ WelcomeHomepage: Welcome to the homepage
 SeeArchive: See the archive
 
 NoEntries: There are no entries in the blog
+Login: Login
 LoginToPost: Admins can login to post
 NewEntry: Post to blog
 NewEntryTitle: Title
