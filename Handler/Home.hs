@@ -3,7 +3,6 @@ module Handler.Home where
 
 import Import
 import Yesod.Auth
-import Data.Maybe
 import Control.Monad.Trans.Maybe
 
 -- This is a handler function for the GET request method on the HomeR
