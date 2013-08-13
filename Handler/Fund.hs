@@ -17,9 +17,8 @@ getFundR fundId = do
     them <- runDB $ get404 $ theirPId
     let fundNick = personNickName them
 
-    let myDebtRaw = sum $ map (\(Entity _ fe) -> myDebtFromFundEntry myPId fe) fundEntries
-    let myDebt = myDebtRaw
-    let theirDebt = ((-1.0) * myDebtRaw)
+    let myDebt = sum $ map (\(Entity _ fe) -> myDebtFromFundEntry myPId fe) fundEntries
+    let theirDebt = ((-1.0) * myDebt)
     let evenSteven = myDebt < 1 && theirDebt < 1
     let iOwe = myDebt > 0
 

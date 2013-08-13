@@ -1,4 +1,5 @@
 <div #indent100px>
+    <h3> &nbsp;
     <H1>_{MsgWelcomeHomepage}
     $if null entries
         <H2> No blog posts.
@@ -17,16 +18,13 @@
     
     <p>
         $maybe _ <- mAuth 
-            <H2> Your Funds
             $maybe funds <- mFunds
-              <ul>
-                $forall (nick, fid) <- funds
-                    <li>
-                      <a href="@{FundR fid}"> #{nick}
-            $nothing
-                TODO: No funds yet. Need message
-
-            <a href=@{AuthR LogoutR}>Logout
+              $if not (null funds)
+                <H2> _{MsgAllFundsTitle}
+                <ul>
+                  $forall (nick, fid) <- funds
+                      <li>
+                        <a href="@{FundR fid}"> #{nick}
         $nothing
             <a href=@{AuthR LoginR}>Login
 

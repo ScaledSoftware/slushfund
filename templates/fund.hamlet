@@ -3,11 +3,11 @@
   <br>
   <h4>
       $if evenSteven
-          The two of your are essentially even. 
+          _{MsgEvenSteven}
       $elseif iOwe
-          <h4> I need to buy the next round, I owe #{personNickName them} $#{myDebt}
+          <h4> _{MsgIOwe fundNick} $#{myDebt}
       $else
-          <h4> #{personNickName them} should buy soon, they owe $#{theirDebt}
+          <h4> _{MsgTheyOwe fundNick} $#{theirDebt}
   <br>
   <br>
 <div #indent100px>

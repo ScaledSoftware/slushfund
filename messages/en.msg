@@ -31,7 +31,7 @@ BlogArchiveTitle: Blog Archive
 
 FundTitle personName@Text: Slush Fund with #{personName}
 FundHeaderTitle: Slush Fund with 
-AllFundsTitle: List of all Slush Funds
+AllFundsTitle: Your SlushFunds
 NoFunds: You don't have any funds. Please use the form below to create one or more.
 
 PhoneNumTitle: Phone Number
@@ -66,3 +66,7 @@ SplitCheck: Split Check?
 SelectPayer: Select who paid:
 PleaseCorrectFundEntry: Please correct fund entry. All fields are required.
 SubmitFundEntry: Submit
+
+EvenSteven: The two of your are essentially even.
+IOwe them@Text: I need to buy the next round, I owe #{them}
+TheyOwe them@Text: #{them} should buy soon, they owe
