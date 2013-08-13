@@ -14,11 +14,11 @@ commentForm entryId = renderDivs $ Comment
 getEntryR :: EntryId -> Handler Html
 getEntryR entryId = do
 
-    muser <- maybeAuth
+    mUser <- maybeAuth
     entry <- runDB $ get404 entryId
     comments <- runDB $ selectList [CommentEntry ==. entryId] [Asc CommentCreated]
 
-    if isJust muser
+    if isJust mUser
         then do
             -- user is logged in.
             (commentWidget, enctype) <- generateFormPost (commentForm entryId)
@@ -39,7 +39,7 @@ postEntryR entryId = do
     entry <- runDB $ get404 entryId
     comments <- runDB $ selectList [CommentEntry ==. entryId] [Asc CommentCreated]
 
-    muser <- maybeAuth
+    mUser <- maybeAuth
 
     case res of
         FormSuccess comment -> do

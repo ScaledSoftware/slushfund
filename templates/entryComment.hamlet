@@ -1,6 +1,6 @@
 <p>
     <h2>_{MsgAddCommentHeading}
-    $maybe _ <- muser
+    $maybe _ <- mUser
        <form method=post enctype=#{enctype}>
            ^{commentWidget}
            <div>
