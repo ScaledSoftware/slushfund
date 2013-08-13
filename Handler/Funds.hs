@@ -14,15 +14,14 @@ getFundsR = do
             -- get the login entity (AppUser)
             Entity _ appUser <- requireAuth
             -- get the personId out of the appuser
-            let personId = appUserPerson appUser  -- TODO: from Just is no-no
-            -- use the PersonId to get all funds for this person
-            entityFunds <- runDB $ selectList ([FundP1 ==. personId] ||. [FundP2 ==. personId] )
+            let myPId = appUserPerson appUser 
+            -- use my person Id (myPId) to get all funds for this person
+            entityFunds <- runDB $ selectList ([FundP1 ==. myPId] ||. [FundP2 ==. myPId] )
                                         [Asc  FundCreated]
             
-            -- we just want the funds, we don't care about the FundIds.
             let funds = map (\(Entity fundId f) -> (fundId, f)) entityFunds
-            let fundPersonIds = map (fundOtherPerson personId . snd) funds
-            let pid2fid = map (\f -> (fundOtherPerson personId (snd f), fst f)) funds 
+            let fundPersonIds = map (fundOtherPerson myPId . snd) funds
+            let pid2fid = map (\f -> (fundOtherPerson myPId (snd f), fst f)) funds 
         
             entityPersons <- runDB $ selectList [PersonId <-. fundPersonIds]
                                                 [Asc PersonNickName]
