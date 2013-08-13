@@ -1,4 +1,4 @@
-<div>
+<div #indent100px>
     <form method=post enctype=#{enctype}>
         ^{infowidget}
         <div>
