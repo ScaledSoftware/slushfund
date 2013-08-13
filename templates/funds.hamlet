@@ -1,4 +1,4 @@
-<p>
+<div #indent100px>
   $if null person2fid
     <p> _{MsgNoFunds}
     <a href=@{FindPersonR}>_{MsgFindPersonLink}
