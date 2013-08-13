@@ -7,7 +7,6 @@ import Handler.AddFundEntry (fundEntryForm, people)
 getFundR :: FundId -> Handler Html
 getFundR fundId = do
     fund <- runDB $ get404 fundId
-    let fundNick = fundNickName fund
     fundEntries <- runDB $ selectList [FundEntryFund ==. fundId] [Asc FundEntryTransDay]
 
 
@@ -16,6 +15,7 @@ getFundR fundId = do
     me <- runDB $ get404 $ myPId
     let theirPId = fundOtherPerson (appUserPerson appUser) fund
     them <- runDB $ get404 $ theirPId
+    let fundNick = personNickName them
 
     let myDebtRaw = sum $ map (\(Entity _ fe) -> myDebtFromFundEntry myPId fe) fundEntries
     let myDebt = myDebtRaw
