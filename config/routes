@@ -10,7 +10,7 @@
 /fund/#FundId FundR GET 
 /funds FundsR GET
 /person/#PersonId PersonR GET POST
-/newusersearch NewUserSearchR GET POST
+/newusersearch NewUserSearchR GET
 /findperson FindPersonR GET POST
 /createfund/#PersonId CreateFundR POST
 /addfundentry/#FundId AddFundEntryR POST

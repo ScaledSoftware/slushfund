@@ -44,6 +44,3 @@ getNewUserSearchR = do
             defaultLayout $ do
                 setTitleI MsgNewUserSearchTitle
                 $(widgetFile "newUserSearch")
-
-postNewUserSearchR :: Handler Html
-postNewUserSearchR = error "Not yet implemented: postNewUserSearchR"
