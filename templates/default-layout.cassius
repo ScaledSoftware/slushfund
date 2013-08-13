@@ -15,62 +15,80 @@
 
 html
     background-color: #{gunmetal}
-    overflow-y: scroll
 
 body, html
     min-height: 100%
     color: #{textcolor}
 
-label
-    color: #{textcolor}
-
 body
-    background-color: #{midnight}
-    font-size: 100%
+    background-color: #{gunmetal}
     align: center
     margin-left: auto
     margin-right: auto
-    width: #{dispwidth}
+    max-width: #{dispwidth}
     padding: 0
 
+#outercontainer
+    overflow-y: scroll
+    background-color: #{midnight}
+    align: center
+    margin-left: auto
+    margin-right: auto
+    max-width: #{dispwidth}
+    position: fixed
+    left: 2em
+    right: 2em
+    top: 0.5em
+    bottom: 3em
+
+footer
+    align: center
+    margin-left: auto
+    margin-right: auto
+    position: fixed
+    bottom: 0.5em
+    
+#topnav
+    text-align: right
+    align: right
+    background-color: #{gunmetal}
+    padding: 0.5em
+    padding-right: 2em
+
+label, select, input
+    color: #{textcolor}
+
+select, input
+    background-color: #{charcoal}
+
+div.required
+    background-color: #{charcoal}
+    display: inline
+    
+    
 h1, h2, h3, h4, h5, h6
     font-family: Georgia, serif
     color: #{textcolor}
 
-h1
-    font-size:2.5em
-
-h2
-    font-size:1.875em
-
-h3
-    font-size:1.5em;
-
-h4
-    font-size:1.25em;
-
-h5
-    font-size:1em;
-
-h6
-    font-size:0.875em;
-
 p
     font-family: Tahoma, Geneva, sans-serif
-    font-size:0.875em;
     width: 600px
 
 a:link 
     color: #{linkorange}
+    text-decoration: underline
 
 a:visited
     color: #{visitedorange}
+    text-decoration: underline
 
 a:hover
     color: #{hoverorange}
+    text-decoration: underline
 
 a:active
     color: #{hoverorange}
+    text-decoration: underline
 
 hr
     color #{gunmetal}
@@ -85,52 +103,13 @@ hr
     margin-left: auto
     margin-right: auto
 
-#topnavUL
-    list-style-type: none
-    margin: 10px 0px 10px 0px /* top and bottom margins 10px */
-    padding: 0px
-    overflow: hidden
-
-#topnavLI
-    float: left
-
-#topnavA, #topnavANarrow
-    margin: 0px
-    border: 1.5px solid #{brightgold}
-    padding: 8px
-    display: block
-    width: 243.666667px
-    background-color: #{linkorange}
-    color: #{textcolor}
-    font-family: Georgia, serif
-    font-size: 150%
-    text-align: center
-
-#topnavA
-    width: 243.666667px
-
-#topnavANarrow
-    width: 117.833333px
-
 textarea 
     width: 600px
     height: 300px
 
 #blogTitleList
-    width: 600px
-    min-width: 600px
     color: #{textcolor}
-    background-color: #{gunmetal}
-    font-size: 1.25em
-    height: 2em
-
-#blogTitleLink
-    color: #{textcolor}
-    background-color: #{gunmetal}
-    font-size: 1.25em
-    position: relative
-    top: 0.375em
-    left: 1em
+    background-color: #{midnight}
 
 #blogPost 
     width: #{textwidth}
@@ -145,6 +124,9 @@ textarea
 #timeStamp
     color: #{red}
     margin-left: 50px
+
+p.center
+    align: center
 
 #commentBody
     background-color: #{gunmetal}

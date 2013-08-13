@@ -1,18 +1,17 @@
-<div style="width=800px;max-width:800px;">
-  <div>
-    <ul #topnavUL>
-      <li #topnavLI>
-        <a #topnavA href=@{FundsR}>Funds
-      <li #topnavLI>
-        <a #topnavA href=@{BlogR}>Slush Fund Blog
-      $maybe _ <- mauth
-        <li #topnavLI>
-            <a #topnavA href=@{AuthR LogoutR}>Logout
-      $nothing
-        <li #topnavLI>
-            <a #topnavA href=@{AuthR LoginR}>Login
-  $maybe msg <- mmsg
-    <div #message>
-      <p>#{msg}
-  
-  ^{widget}
+<div #outercontainer>
+    <h3 #topnav>
+        <a href=@{FundsR}>Funds
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <a href=@{BlogR}>Slush Fund Blog
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        $maybe (Entity _ appUser) <- mauth
+            <a href=@{PersonR $ appUserPerson appUser}>Edit Profile
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <a href=@{AuthR LogoutR}>Logout
+        $nothing
+            <a href=@{AuthR LoginR}>Login
+    $maybe msg <- mmsg
+        <div #message>
+            <p>#{msg}
+    
+    ^{widget}
